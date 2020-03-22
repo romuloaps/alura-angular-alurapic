@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { PhotoService } from './photos/photo/photo.service';
 
 @Component({
   selector: 'app-root',
@@ -6,4 +8,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  photos: Object[] = [];
 }
