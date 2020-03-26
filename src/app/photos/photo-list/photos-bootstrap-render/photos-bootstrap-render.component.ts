@@ -9,6 +9,8 @@ import { Photo } from '../../photo/photo';
 export class PhotosBootstrapRenderComponent implements OnChanges {
 
   @Input() photos: Photo[] = [];
+  @Input() filter: string = "";
+
   rows: any[] = [];
 
   constructor() { }
