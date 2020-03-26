@@ -1,5 +1,5 @@
 <p class="text-center text-muted" *ngIf="!photos.length">
-    Desculpa, mas não há fotos com o texto <strong>{{ filter }}</strong>
+    Desculpa, mas não há fotos <span *ngIf="filter.length">com o texto <strong>{{ filter }}</strong></span>
 </p>
 
 <ol class="list-unstyled">
