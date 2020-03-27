@@ -7,6 +7,7 @@ import { PhotoListComponent } from './photo-list/photo-list.component';
 import { PhotoFormComponent } from './photo-form/photo-form.component';
 import { PhotosBootstrapRenderComponent } from './photo-list/photos-bootstrap-render/photos-bootstrap-render.component';
 import { FilterByDescription } from './photo-list/filter-by-description.pipe';
+import { LoadButtonComponent } from './photo-list/load-button/load-button.component';
 
 @NgModule({
     declarations: [
@@ -14,7 +15,8 @@ import { FilterByDescription } from './photo-list/filter-by-description.pipe';
         PhotoListComponent, 
         PhotoFormComponent, 
         PhotosBootstrapRenderComponent,
-        FilterByDescription
+        FilterByDescription,
+        LoadButtonComponent
     ],
     imports: [
         HttpClientModule,

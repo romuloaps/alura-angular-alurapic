@@ -13,3 +13,8 @@
     [photos]="photos | filterByDescription: filter"
     [filter]="filter">
 </ap-photos-bootstrap-render>
+
+<ap-load-button
+    (click)="load()"
+    [hasMore]="hasMore">
+</ap-load-button>
