@@ -1,9 +1,0 @@
-.photo {
-    margin-bottom: 1rem;
-}
-
-@media (min-width: 1200px) {
-    .photo {
-        margin-right: 1rem;
-    }
-}
