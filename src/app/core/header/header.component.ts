@@ -11,13 +11,11 @@ import { User } from '../user/user';
 })
 export class HeaderComponent implements OnInit {
 
-  user: User;
+  user$: Observable<User>;
 
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.userService
-      .getUser()
-      .subscribe(user => this.user = user);
+    this.user$ = this.userService.getUser();
   }
 }
