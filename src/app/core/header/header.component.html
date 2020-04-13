@@ -2,8 +2,9 @@
     <nav class="navbar navbar-light bg-white">
         <a class="navbar-brand">ALURAPIC</a>
         <div *ngIf="(user$ | async) as user">
-            <i class="fa fa-user-circle"></i>
-            <a class="ml-1">{{ user.name }}</a>
+            <i class="fa fa-user-circle mr-1"></i>
+            <a class="mr-1">{{ user.name }}</a>
+            <a (click)="logout()" href="javascript:void(0)">(Logout)</a>
         </div>
     </nav>
 </header>
