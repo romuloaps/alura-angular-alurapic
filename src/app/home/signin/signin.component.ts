@@ -6,10 +6,9 @@ import { AuthService } from '../../core/auth/auth.service';
 import { PlatformDetectorService } from '../../core/platform-detector/platform-detector.service';
 
 @Component({
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.css']
+  templateUrl: './signin.component.html'
 })
-export class SigninComponent implements OnInit {
+export class SignInComponent implements OnInit {
 
   loginForm: FormGroup;
   @ViewChild("userNameInput") userNameInput: ElementRef<HTMLInputElement>;
