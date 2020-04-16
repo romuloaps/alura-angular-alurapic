@@ -1,23 +1,71 @@
 <h4 class="text-center"> Register to embrace a new world!</h4>
 
-<form class="form mt-4">
+<form [formGroup]="signUpForm" class="form mt-4">
     <div class="form-group">
-        <input  placeholder="email" class="form-control" autofocus >
+        <input formControlName="email" placeholder="email" class="form-control" autofocus>
+        <ap-vmessage 
+            *ngIf="signUpForm.get('email').errors?.required"
+            text="E-mail is required">
+        </ap-vmessage>
+        <ap-vmessage 
+            *ngIf="signUpForm.get('email').errors?.email"
+            text="Invalid e-mail">
+        </ap-vmessage>
     </div>
 
     <div class="form-group">
-        <input placeholder="full name" class="form-control">
+        <input formControlName="fullName" placeholder="full name" class="form-control" maxlength="40">
+        <ap-vmessage 
+            *ngIf="signUpForm.get('fullName').errors?.required"
+            text="Full Name is required">
+        </ap-vmessage>
+        <ap-vmessage 
+            *ngIf="signUpForm.get('fullName').errors?.minlength"
+            text="Minimum length is 3">
+        </ap-vmessage>
+        <ap-vmessage 
+            *ngIf="signUpForm.get('fullName').errors?.maxlength"
+            text="Maximum length is 40">
+        </ap-vmessage>
     </div>
 
     <div class="form-group">
-        <input placeholder="user name" class="form-control">
+        <input formControlName="userName" placeholder="user name" class="form-control" maxlength="30">
+        <ap-vmessage 
+            *ngIf="signUpForm.get('userName').errors?.required"
+            text="User Name is required">
+        </ap-vmessage>
+        <ap-vmessage 
+            *ngIf="signUpForm.get('userName').errors?.pattern"
+            text="Must be lowercase, no whitespace">
+        </ap-vmessage>
+        <ap-vmessage 
+            *ngIf="signUpForm.get('userName').errors?.minlength"
+            text="Minimum length is 3">
+        </ap-vmessage>
+        <ap-vmessage 
+            *ngIf="signUpForm.get('userName').errors?.maxlength"
+            text="Maximum length is 30">
+        </ap-vmessage>
     </div>
 
     <div class="form-group">
-        <input type="password" placeholder="password" class="form-control">
+        <input formControlName="password" type="password" placeholder="password" class="form-control" maxlength="30">
+        <ap-vmessage 
+            *ngIf="signUpForm.get('password').errors?.required"
+            text="Password is required">
+        </ap-vmessage>
+        <ap-vmessage 
+            *ngIf="signUpForm.get('password').errors?.minlength"
+            text="Minimum length is 3">
+        </ap-vmessage>
+        <ap-vmessage 
+            *ngIf="signUpForm.get('password').errors?.maxlength"
+            text="Maximum length is 30">
+        </ap-vmessage>
     </div>
 
     <button class="btn btn-primary btn-block">Register</button>
 
-    <p>Already a user?<a [routerLink]="['']">Sign In!</a></p>
+    <p>Already a user? <a [routerLink]="['']">Sign In!</a></p>
 </form>
