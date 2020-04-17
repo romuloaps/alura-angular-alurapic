@@ -65,7 +65,7 @@
         </ap-vmessage>
     </div>
 
-    <button class="btn btn-primary btn-block">Register</button>
+    <button [disabled]="signUpForm.invalid" class="btn btn-primary btn-block">Register</button>
 
     <p>Already a user? <a [routerLink]="['']">Sign In!</a></p>
 </form>
