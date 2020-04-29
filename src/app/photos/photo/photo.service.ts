@@ -4,8 +4,7 @@ import { Injectable } from '@angular/core';
 
 import { Photo } from './photo';
 import { UploadedPhoto } from './uploaded-photo';
-
-const API_URL = "http://localhost:3000";
+import { ApiUtils } from '../../core/utils/api-utils';
 
 @Injectable({
     providedIn: "root"
@@ -20,7 +19,7 @@ export class PhotoService {
             params = params.append('page', page.toString());
         }
 
-        return this.http.get<Photo[]>(`${API_URL}/${userName}/photos`, {params: params});
+        return this.http.get<Photo[]>(`${ApiUtils.API_URL_PREFIX}/${userName}/photos`, {params: params});
     }
 
     upload(upoloadedPhoto: UploadedPhoto) {
@@ -29,6 +28,6 @@ export class PhotoService {
         formData.append("allowComments", upoloadedPhoto.allowComments ? "true" : "false");
         formData.append("imageFile", upoloadedPhoto.file);
 
-        return this.http.post(`${API_URL}/photos/upload`, formData);
+        return this.http.post(`${ApiUtils.API_URL_PREFIX}/photos/upload`, formData);
     }
 }
