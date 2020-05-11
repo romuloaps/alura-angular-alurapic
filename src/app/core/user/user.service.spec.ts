@@ -1,5 +1,6 @@
+import { TestBed } from '@angular/core/testing';
+
 import { UserService } from './user.service';
-import { TokenService } from '../token/token.service';
 
 describe("UserService", () => {
 
@@ -8,7 +9,12 @@ describe("UserService", () => {
     let service: UserService;
 
     beforeEach(() => {
-        service = new UserService(new TokenService());
+        TestBed.configureTestingModule({
+            providers: [
+                UserService
+            ]
+        });
+        service = TestBed.get(UserService);
     })
 
     it("deve ser instanciado", () => {
