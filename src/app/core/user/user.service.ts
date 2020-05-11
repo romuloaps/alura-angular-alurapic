@@ -38,6 +38,7 @@ export class UserService {
     logout(): void {
         this.tokenService.removeToken();
         this.userSubject.next(null);
+        this.userName = null;
     }
 
     isLogged(): boolean {
