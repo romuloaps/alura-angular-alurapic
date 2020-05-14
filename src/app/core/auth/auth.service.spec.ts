@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { AuthService } from './auth.service';
@@ -27,20 +27,20 @@ describe("AuthService", () => {
         expect(service).toBeTruthy();
     });
 
-    it("deve autenticar o usuário", () => {
+    it("deve autenticar o usuário", fakeAsync(() => {
         const fakeBody = {
             id: 1,
             name: "Teste",
             email: "teste@teste.com"
         };
 
-        spyOn(userService, "setToken").and.returnValue(null);
+        const setTokenSpy = spyOn(userService, "setToken").and.returnValue(null);
 
         service
             .authenticate("teste", "123")
             .subscribe(response => {
                 expect(response.body).toEqual(fakeBody);
-                expect(response.headers.get("x-access-token")).toBe("tokenTeste");
+                expect(setTokenSpy).toHaveBeenCalledWith("tokenTeste");
             });
 
         const request = httpMock.expectOne(req => req.method === "POST");
@@ -49,5 +49,7 @@ describe("AuthService", () => {
                 "x-access-token": "tokenTeste"
             }
         });
-    })
+
+        tick();
+    }));
 });
