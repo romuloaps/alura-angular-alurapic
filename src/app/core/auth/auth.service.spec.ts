@@ -8,19 +8,23 @@ describe("AuthService", () => {
 
     let service: AuthService;
     let httpMock: HttpTestingController;
-    let userService: UserService;
+    let userService: jasmine.SpyObj<UserService>;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule],
             providers: [
-                AuthService
+                AuthService,
+                {
+                    provide: UserService,
+                    useValue: jasmine.createSpyObj("UserService", ["setToken"])
+                }
             ]
         });
 
-        service = TestBed.get(AuthService);
-        httpMock = TestBed.get(HttpTestingController);
-        userService = TestBed.get(UserService);
+        service = TestBed.inject(AuthService);
+        httpMock = TestBed.inject(HttpTestingController);
+        userService = TestBed.inject(UserService) as jasmine.SpyObj<UserService>;
     });
 
     it("deve ser instanciado", () => {
@@ -34,13 +38,13 @@ describe("AuthService", () => {
             email: "teste@teste.com"
         };
 
-        const setTokenSpy = spyOn(userService, "setToken").and.returnValue(null);
+        userService.setToken.and.returnValue(null);
 
         service
             .authenticate("teste", "123")
             .subscribe(response => {
                 expect(response.body).toEqual(fakeBody);
-                expect(setTokenSpy).toHaveBeenCalledWith("tokenTeste");
+                expect(userService.setToken).toHaveBeenCalledWith("tokenTeste");
             });
 
         const request = httpMock.expectOne(req => req.method === "POST");
